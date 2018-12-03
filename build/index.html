@@ -1,0 +1,1288 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>CryptoKart API</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#general-background" class="toc-h1 toc-link" data-title="General Background">General Background</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#order-matching-system" class="toc-h2 toc-link" data-title="Order Matching System">Order Matching System</a>
+                  </li>
+                  <li>
+                    <a href="#self-trade-prevention" class="toc-h2 toc-link" data-title="Self Trade Prevention">Self Trade Prevention</a>
+                  </li>
+                  <li>
+                    <a href="#price-improvement" class="toc-h2 toc-link" data-title="Price Improvement">Price Improvement</a>
+                  </li>
+                  <li>
+                    <a href="#order-lifecycle" class="toc-h2 toc-link" data-title="Order Lifecycle">Order Lifecycle</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api-details" class="toc-h1 toc-link" data-title="API Details">API Details</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#api-urls" class="toc-h2 toc-link" data-title="API URLs">API URLs</a>
+                  </li>
+                  <li>
+                    <a href="#requests" class="toc-h2 toc-link" data-title="Requests">Requests</a>
+                  </li>
+                  <li>
+                    <a href="#date-amp-time-format" class="toc-h2 toc-link" data-title="Date &amp; Time Format">Date &amp; Time Format</a>
+                  </li>
+                  <li>
+                    <a href="#number-format" class="toc-h2 toc-link" data-title="Number Format">Number Format</a>
+                  </li>
+                  <li>
+                    <a href="#pagination" class="toc-h2 toc-link" data-title="Pagination">Pagination</a>
+                  </li>
+                  <li>
+                    <a href="#rate-limits" class="toc-h2 toc-link" data-title="Rate Limits">Rate Limits</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#enum-definitions-keep-here-or-have-separate-terminology" class="toc-h2 toc-link" data-title="ENUM definitions (keep here or have separate?) / terminology">ENUM definitions (keep here or have separate?) / terminology</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#market-data" class="toc-h1 toc-link" data-title="Market Data">Market Data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#kline-data" class="toc-h2 toc-link" data-title="Kline Data">Kline Data</a>
+                  </li>
+                  <li>
+                    <a href="#market-status" class="toc-h2 toc-link" data-title="Market Status">Market Status</a>
+                  </li>
+                  <li>
+                    <a href="#market-summary" class="toc-h2 toc-link" data-title="Market Summary">Market Summary</a>
+                  </li>
+                  <li>
+                    <a href="#order-book" class="toc-h2 toc-link" data-title="Order Book">Order Book</a>
+                  </li>
+                  <li>
+                    <a href="#market-deals" class="toc-h2 toc-link" data-title="Market Deals">Market Deals</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#trading" class="toc-h1 toc-link" data-title="Trading  ">Trading  </a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#place-limit-order" class="toc-h2 toc-link" data-title="Place Limit Order">Place Limit Order</a>
+                  </li>
+                  <li>
+                    <a href="#place-market-order" class="toc-h2 toc-link" data-title="Place Market Order">Place Market Order</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-order" class="toc-h2 toc-link" data-title="Cancel Order">Cancel Order</a>
+                  </li>
+                  <li>
+                    <a href="#cancel-all-orders" class="toc-h2 toc-link" data-title="Cancel All Orders">Cancel All Orders</a>
+                  </li>
+                  <li>
+                    <a href="#pending-orders" class="toc-h2 toc-link" data-title="Pending Orders">Pending Orders</a>
+                  </li>
+                  <li>
+                    <a href="#pending-order-details" class="toc-h2 toc-link" data-title="Pending Order Details">Pending Order Details</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#trade-history" class="toc-h1 toc-link" data-title="Trade History">Trade History</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#finished-orders" class="toc-h2 toc-link" data-title="Finished Orders">Finished Orders</a>
+                  </li>
+                  <li>
+                    <a href="#finished-order-details" class="toc-h2 toc-link" data-title="Finished Order Details">Finished Order Details</a>
+                  </li>
+                  <li>
+                    <a href="#order-deals" class="toc-h2 toc-link" data-title="Order Deals">Order Deals</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#funds-management" class="toc-h1 toc-link" data-title="Funds management">Funds management</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#funds-balance" class="toc-h2 toc-link" data-title="Funds Balance">Funds Balance</a>
+                  </li>
+                  <li>
+                    <a href="#withdrawal" class="toc-h2 toc-link" data-title="Withdrawal">Withdrawal</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#error" class="toc-h1 toc-link" data-title="Error">Error</a>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to Cryptokart trader and developer documentation. These documents outline exchange functionality, market details, and APIs.</p>
+<h1 id='general-background'>General Background</h1><h2 id='order-matching-system'>Order Matching System</h2>
+<p>Cryptokart operates a continuous first-come, first-serve order book. Orders are executed in price-time priority as received by the matching engine.</p>
+<h2 id='self-trade-prevention'>Self Trade Prevention</h2>
+<p>Self-trading is not allowed, meaning two orders from the same user will not fill one another. How we prevent this is by not letting the user place an order that would match against one of their existing orders.</p>
+<h2 id='price-improvement'>Price Improvement</h2>
+<p>Orders are matched at the price of the maker order (existing order in order book), not at that of the taker order.</p>
+<h2 id='order-lifecycle'>Order Lifecycle</h2>
+<p>Valid orders sent to the matching engine are confirmed immediately. If an order executes against another order immediately, the order is considered finished. An order can execute in part or whole. Any part of the order not filled immediately, will be considered open and stay in the order book. Orders will stay in the open state until canceled or subsequently filled by new orders. Currently the only supported time in force policy is GTC (Good Till Canceled).</p>
+<h1 id='api-details'>API Details</h1><h2 id='api-urls'>API URLs</h2>
+<table><thead>
+<tr>
+<th>Environment</th>
+<th>REST</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>PROD</td>
+<td>?</td>
+</tr>
+<tr>
+<td>TEST</td>
+<td>https://test.cryptokart.io</td>
+</tr>
+</tbody></table>
+<h2 id='requests'>Requests</h2>
+<p>All requests and responses are application/json content type and follow typical HTTP response status codes for success and failure.</p>
+<h2 id='date-amp-time-format'>Date &amp; Time Format</h2>
+<p>All timestamps are returned in UNIX epoch time.</p>
+<h2 id='number-format'>Number Format</h2>
+<p>All financial data, i.e. price, amount, fees, total, etc., are positive integers.</p>
+
+<p>Note: we should mention precision of each field (especially tick size)</p>
+<h2 id='pagination'>Pagination</h2>
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>offset</td>
+<td>Number of results offset. Default 0</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Number of results per call. Accepted values: 0 - 1000. Default 10</td>
+</tr>
+<tr>
+<td>last_id</td>
+<td>? (see market deals API)</td>
+</tr>
+</tbody></table>
+<h2 id='rate-limits'>Rate Limits</h2>
+<p>When a rate limit is exceeded, a status of 429 Too Many Requests will be returned.</p>
+
+<p>Market data: 5 requests/second per IP</p>
+
+<p>Trading: 5 request/second per user</p>
+
+<p>Significant excess of the Rate Limits can lead to account suspension.</p>
+<h2 id='authentication'>Authentication</h2>
+<p>TBD</p>
+<h2 id='enum-definitions-keep-here-or-have-separate-terminology'>ENUM definitions (keep here or have separate?) / terminology</h2>
+<p>Add details at end once clear on all variables.</p>
+<h1 id='market-data'>Market Data</h1><h2 id='kline-data'>Kline Data</h2><h3 id='http-request'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"start_time"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="s2">"end_time"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1738485554</span><span class="p">,</span><span class="w">
+</span><span class="s2">"interval"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">3600</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/market/kline</code></p>
+
+<p>Returns Kline/candlestick data for a market</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td>Ex: BTCUSDT</td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Should be greater than 0</td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Should be greater than start time</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Valid inputs: [1, 60, 3600, 86400, multiple of 86400]</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters'>RESPONSE PARAMETERS</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="err">       </span><span class="p">[</span><span class="w">
+</span><span class="err">           </span><span class="mi">1542801600</span><span class="p">,</span><span class="w"> </span><span class="err"> //Time</span><span class="w">
+</span><span class="err">           </span><span class="s2">"30"</span><span class="p">,</span><span class="w"> </span><span class="err">       //Open</span><span class="w">
+</span><span class="err">           </span><span class="s2">"20"</span><span class="p">,</span><span class="w"> </span><span class="err">       //Close</span><span class="w">
+</span><span class="err">           </span><span class="s2">"30"</span><span class="p">,</span><span class="w"> </span><span class="err">       //High</span><span class="w">
+</span><span class="err">           </span><span class="s2">"20"</span><span class="p">,</span><span class="w"> </span><span class="err">       //Low</span><span class="w">
+</span><span class="err">           </span><span class="s2">"0.3"</span><span class="p">,</span><span class="w"> </span><span class="err">       //Volume</span><span class="w">
+</span><span class="err">           </span><span class="s2">"8"</span><span class="p">,</span><span class="w"> </span><span class="err">        //Amount</span><span class="w">
+</span><span class="err">           </span><span class="s2">"BTCUSDT"</span><span class="w"> </span><span class="err">//Market</span><span class="w">
+</span><span class="err">       </span><span class="p">]</span><span class="w">
+</span><span class="err">   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='market-status'>Market Status</h2><h3 id='http-request-2'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/market/status</code></p>
+
+<p>? (not getting response)</p>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-2'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"add response body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><h2 id='market-summary'>Market Summary</h2><h3 id='http-request-3'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"marketName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/market/summary</code></p>
+
+<p>Gives number and volume of orders in order book, to give idea on market depth</p>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketName</td>
+<td>String</td>
+<td>Yes</td>
+<td>&quot;&quot;: Returns for all markets&quot;BTCUSDT&quot;: Returns for the specified market</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<h3 id='response-parameters-3'>RESPONSE PARAMETERS</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="err">       </span><span class="p">{</span><span class="w">
+</span><span class="err">           </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">           </span><span class="s2">"ask_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.4"</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">Total</span><span class="w"> </span><span class="err">volume</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">orders</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">ask</span><span class="w"> </span><span class="err">(i.e.</span><span class="w"> </span><span class="err">sell)</span><span class="w"> </span><span class="err">side</span><span class="w">
+</span><span class="err">           </span><span class="s2">"ask_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">231</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">Number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">orders</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">ask</span><span class="w"> </span><span class="err">(i.e.</span><span class="w"> </span><span class="err">sell)</span><span class="w"> </span><span class="err">side</span><span class="w">
+</span><span class="err">           </span><span class="s2">"bid_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">197</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">Total</span><span class="w"> </span><span class="err">volume</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">orders</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">bid</span><span class="w"> </span><span class="err">(i.e.</span><span class="w"> </span><span class="err">buy)</span><span class="w"> </span><span class="err">side</span><span class="w">
+</span><span class="err">           </span><span class="s2">"bid_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"278.3"</span><span class="w">  </span><span class="err">//</span><span class="w"> </span><span class="err">Number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">orders</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">bid</span><span class="w"> </span><span class="err">(i.e.</span><span class="w"> </span><span class="err">buy)</span><span class="w"> </span><span class="err">side</span><span class="w">
+</span><span class="err">       </span><span class="p">}</span><span class="w">
+</span><span class="err">   </span><span class="p">]</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='order-book'>Order Book</h2><h3 id='http-request-4'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"side"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"offset"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"limit"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/order/book</code></p>
+
+<p>Return all open buy or sell orders in order book of a specified market</p>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>marketName</td>
+<td>String</td>
+<td>Yes</td>
+<td>&quot;&quot;: Returns for all markets&quot;BTCUSDT&quot;: Returns for the specified market</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-4'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">       </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"orders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="err">           </span><span class="p">{</span><span class="w">
+</span><span class="err">               </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">97</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">               </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">               </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">Type.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Limit</span><span class="w"> </span><span class="err">Order</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Market</span><span class="w"> </span><span class="err">Order</span><span class="w">
+</span><span class="err">               </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//</span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Sell</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Buy</span><span class="w">
+</span><span class="err">               </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50"</span><span class="p">,</span><span class="w">
+</span><span class="err">               </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w">
+</span><span class="err">               </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">unfilled</span><span class="w">
+</span><span class="err">           </span><span class="p">}</span><span class="w">
+</span><span class="err">       </span><span class="p">],</span><span class="w">
+</span><span class="err">       </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">  </span><span class="err">//Number</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">orders</span><span class="w">
+</span><span class="err">       </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="err">   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='market-deals'>Market Deals</h2><h3 id='http-request-5'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"limit"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+</span><span class="s2">"last_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/market/deals</code></p>
+
+<p>Returns trade history, as a list of the completed orders</p>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>?</td>
+</tr>
+<tr>
+<td>last_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>?</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-5'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="err">       </span><span class="p">{</span><span class="w">
+</span><span class="err">           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">           </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22"</span><span class="p">,</span><span class="w">
+</span><span class="err">           </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543062276.540955</span><span class="p">,</span><span class="w">
+</span><span class="err">           </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w">
+</span><span class="err">           </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy"</span><span class="w">  </span><span class="err">//Side</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">was</span><span class="w"> </span><span class="err">taker</span><span class="w">
+</span><span class="err">       </span><span class="p">}</span><span class="w">
+</span><span class="err">   </span><span class="p">]</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='trading'>Trading  </h1><h2 id='place-limit-order'>Place Limit Order</h2><h3 id='http-request-6'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"side"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"price"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"4000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/order/putLimit</code></p>
+
+<p>Place a limit order</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>side</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>1 = sell 2 = buy</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>Yes</td>
+<td>Amount within quotes (ex: &quot;0.2&quot;)</td>
+</tr>
+<tr>
+<td>price</td>
+<td>String</td>
+<td>Yes</td>
+<td>Price within quotes (ex: &quot;4000&quot;)</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-6'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">       </span><span class="s2">"deal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Fee</span><span class="w"> </span><span class="err">paid</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w">
+</span><span class="err">       </span><span class="s2">"deal_stock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happen</span><span class="w">
+</span><span class="err">       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">285</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">       </span><span class="s2">"deal_money"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">(=</span><span class="w"> </span><span class="err">price*amount)</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">deal</span><span class="w"> </span><span class="err">happened</span><span class="w">
+</span><span class="err">       </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">type.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Limit</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Market</span><span class="w">
+</span><span class="err">       </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="err">//Side.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Sell</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Buy</span><span class="w">
+</span><span class="err">       </span><span class="s2">"mtime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543228938.770122</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">modified</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">       </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44"</span><span class="p">,</span><span class="w">  </span><span class="err">//Price</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w">
+</span><span class="err">       </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">  </span><span class="err">//User</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">who</span><span class="w"> </span><span class="err">placed</span><span class="w"> </span><span class="err">order</span><span class="w">
+</span><span class="err">       </span><span class="s2">"ctime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543228938.770122</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">created</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">       </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w">
+</span><span class="err">       </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">  </span><span class="err">//Taker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">       </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">  </span><span class="err">//Maker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">       </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">still</span><span class="w"> </span><span class="err">open</span><span class="w">
+</span><span class="err">   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='place-market-order'>Place Market Order</h2><h3 id='http-request-7'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"side"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span><span class="s2">"amount"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/order/putMarket</code></p>
+
+<p>Place a market order</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>side</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>1 = sell 2 = buy</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>Yes</td>
+<td>Amount within quotes (ex: &quot;0.3&quot;)</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-7'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">       </span><span class="s2">"deal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0003"</span><span class="p">,</span><span class="w">  </span><span class="err">//Fee</span><span class="w"> </span><span class="err">paid</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w">
+</span><span class="err">       </span><span class="s2">"deal_stock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happen</span><span class="w">
+</span><span class="err">       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">287</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">       </span><span class="s2">"deal_money"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">(=price*amount)</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happened</span><span class="w">
+</span><span class="err">       </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">type.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Limit</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Market</span><span class="w">
+</span><span class="err">       </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="err">//Side.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Sell</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Buy</span><span class="w">
+</span><span class="err">       </span><span class="s2">"mtime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543230086.512801</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">modified</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">       </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Price</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">(</span><span class="mi">0</span><span class="w"> </span><span class="err">since</span><span class="w"> </span><span class="err">its</span><span class="w"> </span><span class="err">Market</span><span class="w"> </span><span class="err">order)</span><span class="w">
+</span><span class="err">       </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">  </span><span class="err">//User</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">who</span><span class="w"> </span><span class="err">placed</span><span class="w"> </span><span class="err">order</span><span class="w">
+</span><span class="err">       </span><span class="s2">"ctime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543230086.512716</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">created</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">       </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w">
+</span><span class="err">       </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">  </span><span class="err">//Taker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">       </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Maker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">       </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0e-8"</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">still</span><span class="w"> </span><span class="err">open</span><span class="w">
+</span><span class="err">   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='cancel-order'>Cancel Order</h2><h3 id='http-request-8'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">285</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/order/cancel</code></p>
+
+<p>Cancel an order</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Order ID of order you wish to cancel</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-8'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="err">//Details</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">canceled</span><span class="w"> </span><span class="err">order</span><span class="w">
+</span><span class="err">       </span><span class="s2">"deal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"deal_stock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">285</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"deal_money"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"mtime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543228938.770122</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"ctime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543228938.770122</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="w">
+</span><span class="err">   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='cancel-all-orders'>Cancel All Orders</h2><h3 id='http-request-9'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">  </span><span class="err">//Empty</span><span class="w"> </span><span class="err">JSON</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/order/cancelAll</code></p>
+
+<p>Cancel all open orders</p>
+
+<p>Parameters:</p>
+
+<p>None</p>
+<h3 id='response-parameters-9'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"All orders cancelled"</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='pending-orders'>Pending Orders</h2><h3 id='http-request-10'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"offset"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"limit"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/order/pending</code></p>
+
+<p>List all your open orders, including partially filled</p>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>?</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>?</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-10'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">       </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//Count</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">open</span><span class="w"> </span><span class="err">orders</span><span class="w">
+</span><span class="err">       </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"records"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="err">           </span><span class="p">{</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Fee</span><span class="w"> </span><span class="err">paid</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">(before</span><span class="w"> </span><span class="err">discount)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_stock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happen</span><span class="w">
+</span><span class="err">               </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">284</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_money"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">(=price*amount)</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happened</span><span class="w">
+</span><span class="err">               </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">               </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">type.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Limit</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Market</span><span class="w">
+</span><span class="err">               </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="err">//Side.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Sell</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Buy</span><span class="w">
+</span><span class="err">               </span><span class="s2">"mtime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543228936.976983</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">modified</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">               </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44"</span><span class="p">,</span><span class="w">  </span><span class="err">//Price</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">(</span><span class="mi">0</span><span class="w"> </span><span class="err">since</span><span class="w"> </span><span class="err">its</span><span class="w"> </span><span class="err">Market</span><span class="w"> </span><span class="err">order)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">  </span><span class="err">//User</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">who</span><span class="w"> </span><span class="err">placed</span><span class="w"> </span><span class="err">order</span><span class="w">
+</span><span class="err">               </span><span class="s2">"ctime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543228936.976983</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">created</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">               </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w">
+</span><span class="err">               </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">  </span><span class="err">//Taker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">               </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">  </span><span class="err">//Maker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">               </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">still</span><span class="w"> </span><span class="err">open</span><span class="w">
+</span><span class="err">           </span><span class="p">}</span><span class="w">
+</span><span class="err">   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='pending-order-details'>Pending Order Details</h2><h3 id='http-request-11'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">284</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/order/pendingDetail</code></p>
+
+<p>Get details of a single open order by Order ID</p>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Order ID</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-11'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Fee</span><span class="w"> </span><span class="err">paid</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">(before</span><span class="w"> </span><span class="err">discount)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_stock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happen</span><span class="w">
+</span><span class="err">               </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">284</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_money"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">(=price*amount)</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happened</span><span class="w">
+</span><span class="err">               </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">               </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">type.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Limit</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Market</span><span class="w">
+</span><span class="err">               </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="err">//Side.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Sell</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Buy</span><span class="w">
+</span><span class="err">               </span><span class="s2">"mtime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543228936.976983</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">modified</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">               </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44"</span><span class="p">,</span><span class="w">  </span><span class="err">//Price</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">(</span><span class="mi">0</span><span class="w"> </span><span class="err">since</span><span class="w"> </span><span class="err">its</span><span class="w"> </span><span class="err">Market</span><span class="w"> </span><span class="err">order)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">  </span><span class="err">//User</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">who</span><span class="w"> </span><span class="err">placed</span><span class="w"> </span><span class="err">order</span><span class="w">
+</span><span class="err">               </span><span class="s2">"ctime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543228936.976983</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">created</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">               </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w">
+</span><span class="err">               </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">  </span><span class="err">//Taker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">               </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">  </span><span class="err">//Maker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">               </span><span class="s2">"left"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">still</span><span class="w"> </span><span class="err">open</span><span class="w">
+</span><span class="err">     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='trade-history'>Trade History</h1><h2 id='finished-orders'>Finished Orders</h2><h3 id='http-request-12'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">  </span><span class="w">  </span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">  </span><span class="w">  </span><span class="s2">"start_time"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err">  </span><span class="w">  </span><span class="s2">"end_time"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1539158000987</span><span class="p">,</span><span class="w">
+</span><span class="err">  </span><span class="w">  </span><span class="s2">"offset"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err">  </span><span class="w">  </span><span class="s2">"limit"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span><span class="err">  </span><span class="w">  </span><span class="s2">"market_side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/order/finished</code></p>
+
+<p>List all finished orders. Finished means no portion of that order is currently open.</p>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>start_time</td>
+<td>Integer</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>end_time</td>
+<td>Integer</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>market_side</td>
+<td>Integer</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-12'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">       </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"records"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="err">           </span><span class="p">{</span><span class="w">
+</span><span class="err">               </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">287</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0003"</span><span class="p">,</span><span class="w">  </span><span class="err">//Fee</span><span class="w"> </span><span class="err">paid</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">(before</span><span class="w"> </span><span class="err">discount)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"ctime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543230086.512716</span><span class="p">,</span><span class="w">  </span><span class="err">//Trade</span><span class="w"> </span><span class="err">created</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">               </span><span class="s2">"ftime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543230086.512801</span><span class="p">,</span><span class="w">  </span><span class="err">//Trade</span><span class="w"> </span><span class="err">finished</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">               </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">type.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Limit</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Market</span><span class="w">
+</span><span class="err">               </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="err">//Side.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Sell</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Buy</span><span class="w">
+</span><span class="err">               </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">  </span><span class="err">//User</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">who</span><span class="w"> </span><span class="err">placed</span><span class="w"> </span><span class="err">order</span><span class="w">
+</span><span class="err">               </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">               </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Price</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">(</span><span class="mi">0</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">Market</span><span class="w"> </span><span class="err">order)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="p">,</span><span class="w">  </span><span class="err">//Amount</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w">
+</span><span class="err">               </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">  </span><span class="err">//Taker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">               </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Maker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w"> </span><span class="err">(shows</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">was</span><span class="w"> </span><span class="err">Taker)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_stock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happen</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_money"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">(=price*amount)</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happened</span><span class="w">
+</span><span class="err">           </span><span class="p">}</span><span class="w">
+</span><span class="err">       </span><span class="p">]</span><span class="w">
+</span><span class="err">   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='finished-order-details'>Finished Order Details</h2><h3 id='http-request-13'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"market_name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"offset"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"limit"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">287</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/order/finishedDetail</code></p>
+
+<p>Get details of a finished order</p>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>market_name</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-13'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">               </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">287</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0003"</span><span class="p">,</span><span class="w">  </span><span class="err">//Fee</span><span class="w"> </span><span class="err">paid</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">(before</span><span class="w"> </span><span class="err">discount)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"ctime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543230086.512716</span><span class="p">,</span><span class="w">  </span><span class="err">//Trade</span><span class="w"> </span><span class="err">created</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">               </span><span class="s2">"ftime"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543230086.512801</span><span class="p">,</span><span class="w">  </span><span class="err">//Trade</span><span class="w"> </span><span class="err">finished</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">               </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="err">//Order</span><span class="w"> </span><span class="err">type.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Limit</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Market</span><span class="w">
+</span><span class="err">               </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">  </span><span class="err">//Side.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Sell</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Buy</span><span class="w">
+</span><span class="err">               </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">  </span><span class="err">//User</span><span class="w"> </span><span class="err">ID</span><span class="w"> </span><span class="err">who</span><span class="w"> </span><span class="err">placed</span><span class="w"> </span><span class="err">order</span><span class="w">
+</span><span class="err">               </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">               </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Price</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">(</span><span class="mi">0</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">Market</span><span class="w"> </span><span class="err">order)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="p">,</span><span class="w">  </span><span class="err">//Amount</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">user</span><span class="w">
+</span><span class="err">               </span><span class="s2">"taker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">  </span><span class="err">//Taker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w">
+</span><span class="err">               </span><span class="s2">"maker_fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">  </span><span class="err">//Maker</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">rate</span><span class="w"> </span><span class="err">(shows</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">was</span><span class="w"> </span><span class="err">Taker)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_stock"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.3"</span><span class="p">,</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">amount</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happen</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_money"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15"</span><span class="w">  </span><span class="err">//Actual</span><span class="w"> </span><span class="err">total</span><span class="w"> </span><span class="err">(=price*amount)</span><span class="w"> </span><span class="err">on</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">happened</span><span class="w">
+</span><span class="err">   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='order-deals'>Order Deals</h2><h3 id='http-request-14'>HTTP Request</h3><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"order_id"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">283</span><span class="p">,</span><span class="w">
+</span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="s2">"limit"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code>GET {{domain}}/matchengine/order/deals</code></p>
+
+<p>List all Trades that correspond to a specified Order. Remember an order can be filled in partial amounts.</p>
+
+<p>Parameters:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Mandatory</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Order ID</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>?</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>?</td>
+</tr>
+</tbody></table>
+<h3 id='response-parameters-14'>RESPONSE PARAMETERS</h3>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="err">   </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+</span><span class="err">   </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">       </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="err">       </span><span class="s2">"records"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="err">           </span><span class="p">{</span><span class="w">
+</span><span class="err">               </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="mf">1543233413.923899</span><span class="p">,</span><span class="w">  </span><span class="err">//Time</span><span class="w"> </span><span class="err">at</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">got</span><span class="w"> </span><span class="err">executed</span><span class="w">
+</span><span class="err">               </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0002"</span><span class="p">,</span><span class="w">  </span><span class="err">//Fee</span><span class="w"> </span><span class="err">deducted</span><span class="w"> </span><span class="err">from</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">(before</span><span class="w"> </span><span class="err">discount)</span><span class="w">
+</span><span class="err">               </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="err">//Role</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">user</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">trade.</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Sell</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">Buyer</span><span class="w">
+</span><span class="err">               </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2"</span><span class="p">,</span><span class="w">  </span><span class="err">//Trade</span><span class="w"> </span><span class="err">amount</span><span class="w">
+</span><span class="err">               </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">  </span><span class="err">//User</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">               </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">140</span><span class="p">,</span><span class="w">  </span><span class="err">//Trade</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8.8"</span><span class="p">,</span><span class="w">  </span><span class="err">//Total</span><span class="w"> </span><span class="err">(=price*amount)</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">trade</span><span class="w">
+</span><span class="err">               </span><span class="s2">"deal_order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">292</span><span class="p">,</span><span class="w">  </span><span class="err">//ID</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">respective</span><span class="w"> </span><span class="err">order</span><span class="p">,</span><span class="w"> </span><span class="err">with</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">trade</span><span class="w"> </span><span class="err">took</span><span class="w"> </span><span class="err">place</span><span class="w">
+</span><span class="err">               </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"44"</span><span class="w">  </span><span class="err">//Price</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">trade</span><span class="w">
+</span><span class="err">           </span><span class="p">}</span><span class="w">
+</span><span class="err">       </span><span class="p">],</span><span class="w">
+</span><span class="err">       </span><span class="s2">"feeDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err">           </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-26T11:56:54.000Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//Created</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">           </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-26T11:56:54.000Z"</span><span class="p">,</span><span class="w">  </span><span class="err">//Updated</span><span class="w"> </span><span class="err">time</span><span class="w">
+</span><span class="err">           </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">191</span><span class="p">,</span><span class="w">  </span><span class="err">//?</span><span class="w">
+</span><span class="err">           </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">  </span><span class="err">//User</span><span class="w"> </span><span class="err">ID</span><span class="w">
+</span><span class="err">           </span><span class="s2">"dealId"</span><span class="p">:</span><span class="w"> </span><span class="mi">283</span><span class="p">,</span><span class="w">  </span><span class="err">//?</span><span class="w">
+</span><span class="err">           </span><span class="s2">"market"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTCUSDT"</span><span class="p">,</span><span class="w">
+</span><span class="err">           </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">  </span><span class="err">//Currency</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">which</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">charged.</span><span class="w"> </span><span class="err">If</span><span class="w"> </span><span class="err">buy</span><span class="w"> </span><span class="err">order</span><span class="w"> </span><span class="err">then</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">base</span><span class="w"> </span><span class="err">currency</span><span class="p">,</span><span class="w"> </span><span class="err">if</span><span class="w"> </span><span class="err">sell</span><span class="w"> </span><span class="err">order</span><span class="p">,</span><span class="w"> </span><span class="err">then</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">quote</span><span class="w"> </span><span class="err">currency</span><span class="w">
+</span><span class="err">           </span><span class="s2">"discountedFee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000200000"</span><span class="p">,</span><span class="w">  </span><span class="err">//Fee</span><span class="w"> </span><span class="err">after</span><span class="w"> </span><span class="err">applying</span><span class="w"> </span><span class="err">discount</span><span class="w">
+</span><span class="err">           </span><span class="s2">"discountPercent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">  </span><span class="err">//Discount</span><span class="w"> </span><span class="err">percentage</span><span class="w"> </span><span class="err">this</span><span class="w"> </span><span class="err">fee</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">applicable</span><span class="w"> </span><span class="err">for</span><span class="w">
+</span><span class="err">       </span><span class="p">}</span><span class="w">
+</span><span class="err">   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='funds-management'>Funds management</h1><h2 id='funds-balance'>Funds Balance</h2>
+<p>Expose API?</p>
+<h2 id='withdrawal'>Withdrawal</h2>
+<p>Expose API?</p>
+<h1 id='error'>Error</h1>
+<p>(remarks: HitBTC shows it in easy to follow UI. Binance is the most thorough covers the most types of errors, and splits it nicely [10xx, 11xx, 9xxx]</p>
+
+<table><thead>
+<tr>
+<th>HTTP Status Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
